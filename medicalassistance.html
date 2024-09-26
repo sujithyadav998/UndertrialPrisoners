@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Medical Assistance</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-container label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-container input, .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-container button {
+            padding: 10px 20px;
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #2ecc71;
+        }
+        /* Popup Styles */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 10;
+            display: none;
+        }
+        .popup p {
+            font-size: 16px;
+            color: #27ae60;
+        }
+        .popup button {
+            margin-top: 10px;
+            padding: 5px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .popup button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Request Medical Assistance</h1>
+
+    <div class="form-container">
+        <form id="medicalForm">
+            <label for="prisonerName">Prisoner Name:</label>
+            <input type="text" id="prisonerName" name="prisonerName" required>
+
+            <label for="prisonerId">Prisoner ID:</label>
+            <input type="text" id="prisonerId" name="prisonerId" required>
+
+            <label for="medicalIssue">Describe Medical Issue:</label>
+            <textarea id="medicalIssue" name="medicalIssue" rows="4" required></textarea>
+
+            <label for="preferredTime">Preferred Time for Consultation:</label>
+            <input type="time" id="preferredTime" name="preferredTime" required>
+
+            <button type="submit">Submit Request</button>
+        </form>
+    </div>
+
+    <!-- Popup for success message -->
+    <div class="popup" id="popup">
+        <p>Medical assistance request submitted successfully!</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+
+    <script>
+        // Form submission handler
+        document.getElementById('medicalForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            // Simulate form submission (replace this with actual API call)
+            console.log('Form submitted:', {
+                prisonerName: document.getElementById('prisonerName').value,
+                prisonerId: document.getElementById('prisonerId').value,
+                medicalIssue: document.getElementById('medicalIssue').value,
+                preferredTime: document.getElementById('preferredTime').value
+            });
+
+            // Show the success popup
+            showPopup();
+        });
+
+        // Show popup function
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'block';
+        }
+
+        // Close popup function
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>

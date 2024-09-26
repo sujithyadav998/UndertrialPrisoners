@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect with a Lawyer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fef4ea;
+        }
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #333;
+        }
+        .lawyer-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .lawyer-card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+        .lawyer-card h3 {
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .lawyer-card p {
+            margin: 5px 0;
+            font-size: 14px;
+            color: #666;
+        }
+        .lawyer-card .rating {
+            font-size: 18px;
+            font-weight: bold;
+            color: #f39c12;
+        }
+        .lawyer-card .fees {
+            font-size: 16px;
+            font-weight: bold;
+            color: #27ae60;
+        }
+        .request-callback-btn {
+            margin-top: 15px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #3498db;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .request-callback-btn:hover {
+            background-color: #2980b9;
+        }
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            z-index: 10;
+            display: none;
+        }
+        .popup p {
+            font-size: 16px;
+            color: #27ae60;
+        }
+        .popup button {
+            margin-top: 10px;
+            padding: 5px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .popup button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Connect with a Lawyer</h1>
+    <div class="lawyer-list" id="lawyerList"></div>
+
+    <!-- Popup for success message -->
+    <div class="popup" id="popup">
+        <p>Request sent successfully!</p>
+        <button onclick="closePopup()">OK</button>
+    </div>
+
+    <script>
+        // Fetch lawyer data from the backend
+        fetch('http://localhost:3000/api/lawyers')
+            .then(response => response.json())
+            .then(data => {
+                const lawyerList = document.getElementById('lawyerList');
+                data.forEach(lawyer => {
+                    const lawyerCard = document.createElement('div');
+                    lawyerCard.classList.add('lawyer-card');
+                    lawyerCard.innerHTML = `
+                        <h3>${lawyer.name}</h3>
+                        <p>Specialization: ${lawyer.specialization}</p>
+                        <p>Experience: ${lawyer.experience}</p>
+                        <p>Email: ${lawyer.email}</p>
+                        <p>Phone: ${lawyer.phone}</p>
+                        <p>Location: ${lawyer.location}</p>
+                        <p class="rating">Rating: ${lawyer.rating} (${lawyer.reviews} reviews)</p>
+                        <p>Availability: ${lawyer.availability}</p>
+                        <p>Languages Spoken: ${lawyer.languagesSpoken.join(', ')}</p>
+                        <p class="fees">Fees: $${lawyer.feesPerConsultation} per consultation</p>
+                        <button class="request-callback-btn" onclick="requestCallback('${lawyer.name}')">Request Callback</button>
+                    `;
+                    lawyerList.appendChild(lawyerCard);
+                });
+            })
+            .catch(error => console.error('Error fetching lawyers:', error));
+
+        // Function to handle callback request
+        function requestCallback(lawyerName) {
+            // Simulate API call to request a callback
+            console.log(`Callback requested for ${lawyerName}`);
+
+            // Show the popup
+            showPopup();
+        }
+
+        // Show popup function
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'block';
+        }
+
+        // Close popup function
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }
+
+
+
+
+
+        
+    </script>
+</body>
+</html>

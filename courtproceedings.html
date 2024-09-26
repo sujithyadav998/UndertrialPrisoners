@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Court Proceedings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fef4ea;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .court-proceedings {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .proceeding-card {
+            background: white;
+            width: 100%;
+            max-width: 600px;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .proceeding-card h2 {
+            margin-bottom: 5px;
+            color: #2980b9;
+        }
+        .proceeding-card p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+        .proceeding-card .status {
+            font-size: 16px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Your Court Proceedings</h1>
+
+    <div class="court-proceedings" id="proceedingsContainer"></div>
+
+    <script>
+        // Replace with actual username in a real-world app
+        const username = "johndoe";
+
+        // Fetch court proceedings by username
+        fetch(`http://localhost:3000/api/court-proceedings/${username}`)
+            .then(response => response.json())
+            .then(data => {
+                const proceedingsContainer = document.getElementById('proceedingsContainer');
+
+                if (data.message) {
+                    proceedingsContainer.innerHTML = `<p>${data.message}</p>`;
+                    return;
+                }
+
+                data.forEach(proceeding => {
+                    const proceedingCard = document.createElement('div');
+                    proceedingCard.classList.add('proceeding-card');
+                    proceedingCard.innerHTML = `
+                        <h2>Case ID: ${proceeding.caseId}</h2>
+                        <p>Case Type: ${proceeding.caseType}</p>
+                        <p>Court Name: ${proceeding.courtName}</p>
+                        <p>Judge: ${proceeding.judge}</p>
+                        <p>Case Filed Date: ${new Date(proceeding.caseFiledDate).toLocaleDateString()}</p>
+                        <p>Hearing Date: ${new Date(proceeding.hearingDate).toLocaleDateString()}</p>
+                        <p class="status">Current Status: ${proceeding.currentStatus}</p>
+                        <p>Next Hearing Date: ${proceeding.nextHearingDate ? new Date(proceeding.nextHearingDate).toLocaleDateString() : 'N/A'}</p>
+                        <p>Prosecutor: ${proceeding.prosecutor}</p>
+                        <p>Defense Lawyer: ${proceeding.defenseLawyer}</p>
+                        <p>Fines or Penalties: $${proceeding.finesOrPenalties}</p>
+                        <p>Verdict: ${proceeding.verdict || 'Pending'}</p>
+                        <p>Case Summary: ${proceeding.caseSummary}</p>
+                        <p>Comments: ${proceeding.comments.join(', ')}</p>
+                        <p>Related Evidence: ${proceeding.relatedEvidence.map(e => `<a href="${e}" target="_blank">View Evidence</a>`).join(', ')}</p>
+                    `;
+                    proceedingsContainer.appendChild(proceedingCard);
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching court proceedings:', error);
+            });
+    </script>
+</body>
+</html>

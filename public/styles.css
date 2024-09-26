@@ -1,13 +1,4 @@
-
-<!doctype HTML>
-<html>
-	<head>
-		<title></title>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- <link rel="stylesheet" href="templates\styles.css" /> -->
-    <style>
-      body {
+body {
 	
 	margin: 0;
 	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
@@ -64,7 +55,7 @@ header {
 {
     background-color: aqua;
     height:90vh ; 
-    background-color: #c4dedc;
+    background-color: #fef4ea;
     display: flex;
     flex-direction:row ;
     width: 100vw;
@@ -218,65 +209,3 @@ header{
     margin-left:45px ; 
   }
 
-
-    </style>
-	</head>
-	<body>
-		
-         <header>
-            
-          <ul class="navbar">
-    <li class="nav-item"><a href="#">Home</a></li>
-    <li class="nav-item"><a href="#">Law</a></li>
-    <li class="nav-item"><a href="#">Account</a></li>
-  </ul>
-          
-          </header>
-
-          <div id = "container"> 
-
-                 <div id = "intro">
-                 <h1 id = "title"> The NyayaSahayak </h1>
-                <h2 id  = "subtitle"> an AI-driven chatbot designed to provide undertrial prisoners in India with essential legal information and resources. Focused on promoting legal awareness, JusticeGuide offers guidance on the rights of undertrial prisoners, bail processes, speedy trials, and available legal support.  </h2>
-                <button onclick = "window.location.href = '/bot' " id = "trybtn"> <b> Try NyayaSahayak</b> </button>
-                 </div>
-          </div> 
-          <div id = "con"> 
-            <div class = "ftr">  
-              <h2>   Connect with a Lawyer</h2> 
-              <h3> reach out and request legal assistance from registered lawyers for their cases, facilitating a smoother legal process.</h3>
-              <button onclick = "window.location.href = '/lawyers'" class = "featurebtn"> Get started </button>
-              
-             
-
-            </div>
-            <div class = "ftr"> 
-              <h2>  Court Proceedings  </h2> 
-              <h3> detailed information about your court cases,including current status, hearing dates, and related updates</h3>
-              <button onclick = "window.location.href = '/courtproceedings'" class = "featurebtn"> Get started </button>
-              
-            </div>
-            <div class = "ftr"> <h2>Seek Medical assistance </h2> 
-              <h3>submit requests for medical help, detailing your health issues and preferred consultation times</h3>
-              <button  onclick = "window.location.href = '/medicalassistance'" class = "featurebtn"> Get started </button>
-              
-
-             </div>
-
-           </div>
-
-         
-
-         
-
-          
-
-           
-            
-          
-       
-
-           <!-- <script src="scriptweather.js"></script> -->
-
-	</body>
-</html>
